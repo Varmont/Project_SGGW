@@ -6,6 +6,7 @@ from .user_management.user import User
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///blog.db"
 app.config["SECRET_KEY"] = "DSFDSFGHSHFFSG"
+app.static_folder = 'static'
 
 db.init_app(app)
 login_manager.init_app(app)
