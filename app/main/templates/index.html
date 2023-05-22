@@ -1,25 +1,24 @@
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
-
-
-{% block content %} <!-- zawartość main -->
+<!-- zawartość main -->
 <!-- header -->
-<div class="header">
-        <h1>Biuro podróży "Kulturalni baloniarze"</h1>
-        <h6>main page</h6>
-</div>
+{% block header %}
+    <h1>Biuro podróży "Kulturalni baloniarze"</h1>
+    <h6>main page</h6>
+{% endblock %}
 
+{% block content %}
 <!-- karty wszystkich wycieczek -->
-   {% for trip in trips %}
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">
+{% for trip in trips %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">
 
-                &bull; {{ trip.name }}, {{ trip.city }}
-            </h5>
-            <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
-        </div>
+            &bull; {{ trip.name }}, {{ trip.city }}
+        </h5>
+        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 
 
 <!--    <div class="news">-->
@@ -129,40 +128,5 @@
 
 <!-- sidebar -->
 <!-- footer-->
-    <div class="footer">
-        <div class="bottomlinks">
-            <h4>Politics</h4>
-            <ul>
-                <li><a href="#">Congress</a></li>
-                <li><a href="#">Security</a></li>
-                <li><a href="#">The nine</a></li>
-                <li><a href="#">Trumpmerica</a></li>
-                <li><a href="#">State</a></li>
-            </ul>
-        </div>
-        <div class="bottomlinks">
-            <h4>Entertainment</h4>
-            <ul>
-                <li><a href="#">Star</a></li>
-                <li><a href="#">Media</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Screen</a></li>
-                <li><a href="#">Culture</a></li>
-            </ul>
-        </div>
-        <div class="bottomlinks">
-            <h4>Technology</h4>
-            <ul>
-                <li><a href="#">Startup</a></li>
-                <li><a href="#">Culture</a></li>
-                <li><a href="#">Future</a></li>
-                <li><a href="#">Gadget</a></li>
-                <li><a href="#">Bussiness</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
 
 {% endblock %}

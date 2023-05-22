@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
 * {box-sizing: border-box;}
 
 body {
@@ -77,22 +77,33 @@ body {
     border: 1px solid #ccc;
   }
 }
-</style>
-</head>
-<body>
 
-<div class="topnav">
-  <a class="active" href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <div class="search-container">
-    <form method = "POST", action="{{url_for('main.search')}}"> <!-- przenieś do html search -->
-      {{form.hidden_tag()}} <!-- no form yet-->
-      <input type="text" placeholder="Search.." name="searched">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
+
+
+
+
+
+
+    </style>
+
+</head>
+<body >
+<div class="topnav" id="myDIV">
+
+    <a class='active' href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="#contact">Contact</a>
+    <div class="search-container">
+        <form , action="{{url_for('main.search')}}" method="POST">
+            {{form.hidden_tag()}}
+            <input name="searched" placeholder="Search.." type="text">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
 </div>
+
 
 </body>
 </html>
+

@@ -11,6 +11,10 @@ def index():
     trips = db.session.execute(db.select(Trip)).scalars()
     return render_template('index.html', trips=trips)
 
+@main.route("/about")
+def about():
+    return render_template('about.html')
+
 
 # pass stuff to topnavbar.html
 
