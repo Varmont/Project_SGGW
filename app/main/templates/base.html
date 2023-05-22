@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet">
+{% include 'topnavbar.html' %}
+
+<div class="container">
+ <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
+
+
+    {% block content %}
+
+    <!-- content to repeat-->
+    {% endblock %}
+
+    <!--footer to repeat -->
+    <div class="footer">
+        <div class="bottomlinks">
+            <h4>Politics</h4>
+            <ul>
+                <li><a href="#">Congress</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">The nine</a></li>
+                <li><a href="#">Trumpmerica</a></li>
+                <li><a href="#">State</a></li>
+            </ul>
+        </div>
+        <div class="bottomlinks">
+            <h4>Entertainment</h4>
+            <ul>
+                <li><a href="#">Star</a></li>
+                <li><a href="#">Media</a></li>
+                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Screen</a></li>
+                <li><a href="#">Culture</a></li>
+            </ul>
+        </div>
+        <div class="bottomlinks">
+            <h4>Technology</h4>
+            <ul>
+                <li><a href="#">Startup</a></li>
+                <li><a href="#">Culture</a></li>
+                <li><a href="#">Future</a></li>
+                <li><a href="#">Gadget</a></li>
+                <li><a href="#">Bussiness</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</html>

@@ -1,0 +1,21 @@
+{% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
+
+
+{% block content %}
+   <div class="header">
+       <h2> You searched for ..</h2>
+    </div>
+
+<br/>
+    {% for trip in trips %}
+         <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">
+
+                &bull; {{ trip.name }}, {{ trip.city }}
+            </h5>
+            <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}
