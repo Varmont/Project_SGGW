@@ -24,5 +24,7 @@ app.register_blueprint(user_management)
 from .trips.routes import trips
 app.register_blueprint(trips)
 
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
