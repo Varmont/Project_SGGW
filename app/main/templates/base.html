@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet">
-{% include 'topnavbar.html' %}
 
-<div class="container"></div>
-<!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
+{% include 'topnavbar.html' %}
 
 
 <div class="header">
@@ -12,11 +10,15 @@
     {% endblock %}
 </div>
 
+<div class="container">
+    {% block content %}
 
-{% block content %}
+    <!-- block content to repeat-->
+    {% endblock %}
+</div>
 
-<!-- block content to repeat-->
-{% endblock %}
+<!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
+
 
 <!--footer to repeat everytime -->
 

@@ -6,6 +6,10 @@ from .searchform import SearchForm
 main = Blueprint('main', __name__, template_folder='templates')
 
 
+@main.route("/filterwindow")
+def filterwindow():
+    return render_template('filterwindow.html')
+
 @main.route("/")
 def index():
     trips = db.session.execute(db.select(Trip)).scalars()
