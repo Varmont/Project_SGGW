@@ -5,16 +5,36 @@
 {% include 'topnavbar.html' %}
 
 
-<div class="header">
-    {% block header %} <!-- block different for many templates-->
-    {% endblock %}
-</div>
-
 <div class="container">
-    {% block content %}
+    <div class="header">
+        {% block header %} <!-- block different for many templates-->
+        {% endblock %}
+    </div>
+    <div class="news">
+        {% block content %}
 
-    <!-- block content to repeat-->
-    {% endblock %}
+        <!-- block content to repeat, zawartość centrum-->
+        {% endblock %}
+        <!-- sidebar added -->
+    </div>
+    <div class="sidebar">
+<!-- zawartość boku, sidebara -->
+        <h2>Filtrowanie wycieczek </h2>
+        <div class="pins">
+            {% include 'slider.html' %}
+        </div>
+        <div class="pins">
+
+        </div>
+        <div class="pins">
+
+        </div>
+        <div class="pins">
+        </div>
+        <div class="pins">
+        </div>
+    </div>
+
 </div>
 
 <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
