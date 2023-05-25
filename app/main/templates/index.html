@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<!-- karty wszystkich wycieczek -->
+<br/>
 {% for trip in trips %}
 <div class="card" style="width: 18rem;">
     <div class="card-body">
@@ -15,12 +15,11 @@
 
             &bull; {{ trip.name }}, {{ trip.city }}
         </h5>
-        <h3>{{trip.price}} zł </h3>
         <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
     </div>
 </div>
 {% endfor %}
-
+{% endblock %}
 <!--    <div class="news">-->
 <!--        <div class="article big">-->
 <!--            <img src="https://lh3.googleusercontent.com/M8JvfafrfqoRnprRGxJHbkWG16OG8JoeNtCrcYwBiVYw-cWxN5GgrReRVlzXja3FJqQUJMr0XWbhYuOMiJDKaPJNfr550S2QHAdCJ0Y8IrDI0kHLuYX7VDY-5EtkPu_q9EC1-Ls-tflFgQ3wzRjowPhtfF-VBgzzUup6cqxPtpUSxGHSkn25keHSPCO4QDmwkyGQ5anJu5fPJ7ANTD3sEaYB7kUxduap7qL5rcia67dJpSbsiF_UA1WuPNNnTc_Ab6zw_jDabrsPMF0ZHTse80freR2fatmKEZVs2lnbiDoBaHbzPbfH8kbDwUOx4ytFwJyIk7ktBqItI_SRc3eUqQX1b96E0N4n15C5rS1lXBBGBTYqoZ98cqGRJR8PFsY1G5q7ldM0nZ0Ymb8bf4AcVdK6gCJz4PfKM4wbv0QVEUDO9xkeqkZagTl9x2T-L2YKkQS8uujlTwiGUQSrhBYcy3k4GZm8-9nCGM2JtttAcHGC9AioBayz4dTYwDYgKJVS4TPScrrS9TjpbeMZGew-Jy_MoY1fxYkZTn_5zkf_KvqOpVevM6UO9w50kfmTwaMHgXJxsaxolemhKJQEUApn2CusIOnVyOyaC7f2AiLsMwbh_0DUx1jZZDnGc_fYAudR__2KjjmRtqkCJE0NtvFedsc3ubc1mvlUCHAf1HY7=w883-h662-no">-->
@@ -128,5 +127,3 @@
 
 <!-- sidebar -->
 <!-- footer-->
-
-{% endblock %}

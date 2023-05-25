@@ -18,13 +18,27 @@
         <!-- sidebar added -->
     </div>
     <div class="sidebar">
-<!-- zawartość boku, sidebara -->
-        <h2>Filtrowanie wycieczek </h2>
+        <!-- zawartość boku, sidebara -->
+
+
         <div class="pins">
-            {% include 'slider.html' %}
+            <h2>Filtering trips </h2>
+
+            <form action="/">
+                <input type="submit" value="Clear all filters"/>
+            </form>
+
         </div>
         <div class="pins">
+            <form action="{{url_for('main.index')}}" method="POST">
+                {{form.csrf_token}}
+                <label for="email">Choose city: </label>
+                <div class="form-group">
+                    {{form.city}}
+                </div>
+                <input type="submit" value="Filter">
 
+            </form>
         </div>
         <div class="pins">
 
