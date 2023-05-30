@@ -44,7 +44,7 @@ a{
 	margin-bottom: 1rem;
 }
 img{
-	max-width: 100%                    /* to make all images responsive */
+	max-width: 100%
 }
 
 .container{
@@ -92,7 +92,7 @@ img{
 	}
 	.small{
         display: flex;
-        height: 200px;
+        max-height: 600px;
         max-width: 600px;
         flex-basis: calc(33.3333% - 20px);
         flex-grow: 1;
