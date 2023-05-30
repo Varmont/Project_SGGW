@@ -8,17 +8,19 @@
 
 {% block content %}
 <br/>
-{% for trip in trips %}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
-
-            &bull; {{ trip.name }}, {{ trip.city }}
-        </h5>
+<div class="news">
+    {% for trip in trips %}
+    <div class="article small">
+        TU BĘDZIE ZDJĘCIE
+        <div class="articlecontent">
+            <h2>{{ trip.name }} - {{ trip.city }}</h2>
+            <p>{{trip.description}}</p>
+        </div>
         <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
+
 {% endblock %}
 <!--    <div class="news">-->
 <!--        <div class="article big">-->

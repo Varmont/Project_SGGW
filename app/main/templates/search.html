@@ -1,7 +1,7 @@
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
 
 {% block header %}
-    <h2> You searched for ..</h2>
+    <h2> Oto nasze propozycje do twoich wyszukiwań..</h2>
 {% endblock %}
 
 {% block content %}
@@ -11,9 +11,10 @@
     <div class="card-body">
         <h5 class="card-title">
 
-            &bull; {{ trip.name }}, {{ trip.city }}
+            &bull; {{ trip.name }}, {{ trip.city }} <br>
+            {{trip.description}}
         </h5>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">Zobacz więcej</a>
     </div>
 </div>
 {% endfor %}
