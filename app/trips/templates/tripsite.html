@@ -1,14 +1,39 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="{{ url_for('static', filename='stylesheets/trip.css') }}" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h2>It's a {{name}} trip! It will lead you to {{city}}. </h2>
-<h3>It will start at {{date_start}} and end {{date_end}}. </h3>
-<h3>The total cost: {{price}} </h3>
-<h3>All about the trip: <br>
-    {{description}}</h3>
+    <div id="container">
+        <h2>Witaj na wycieczce do {{ trip.city }}!</h2>
+        <div id="topbar">
+            <div id="photo">
+                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            </div>
+            <div id="opis">
+                {{ trip.description }}
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <div id="info">
+            Data rozpoczęcia wycieczki: {{ trip.date_start }}</br>
+            Data zakończenia wycieczki: {{ trip.date_end }}</br>
+            Całkowity koszt wycieczki: {{ trip.price }} zł
+        </div>
+        {% if current_user.is_authenticated %}
+            {% if not current_user.is_following(trip.id) %}
+                <form action="{{ url_for('trips.follow', tripID = trip.id) }}" method="POST">
+                    <button class="btn btn-primary" type="submit">Dodaj do ulubionych</button>
+                </form>
+            {% else %}
+                <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
+                    <button class="btn btn-primary" type="submit">Usuń z ulubionych</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
 </body>
 </html>

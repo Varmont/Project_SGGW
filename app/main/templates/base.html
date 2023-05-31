@@ -31,10 +31,10 @@
         </div>
         <div class="pins">
             <form action="{{url_for('main.index')}}" method="POST">
-                {{form.csrf_token}}
+                {{ form.hidden_tag() }}
                 <label for="email">Choose city: </label>
                 <div class="form-group">
-                    {{form.city}}
+                    {{ form.city }}
                 </div>
                 <input type="submit" value="Filter">
 
@@ -58,6 +58,10 @@
 
 
 <div class="footer">
+    {% if current_user.is_authenticated %}
+    Zalogowany jako
+    {{ current_user.username }}
+    {% endif %}
     <div class="bottomlinks">
         <h4>Politics</h4>
         <ul>
