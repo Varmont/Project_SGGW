@@ -8,30 +8,38 @@
 <h2>Add Trip</h2>
 <form method="POST" action="{{ url_for('trips.tripadd') }}">
     <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Nazwa wycieczki: </label>
         <input type="text" class="form-control" id="name" name="name" required>
     </div>
     <div class="form-group">
-        <label for="date_start">Date_start</label>
+        <label for="date_start">Data rozpoczęcia wycieczki: </label>
         <input type="date" class="form-control" id="date_start" name="date_start" required>
     </div>
     <div class="form-group">
-        <label for="date_end">Date_end</label>
+        <label for="date_end">Data zakończenia wycieczki: </label>
         <input type="date" class="form-control" id="date_end" name="date_end" required>
     </div>
     <div class="form-group">
-        <label for="city">city</label>
+        <label for="country">Państwo: </label>
+        <input type="text" class="form-control" id="country" name="country" required>
+    </div>
+    <div class="form-group">
+        <label for="city">Miasto: </label>
         <input type="text" class="form-control" id="city" name="city" required>
     </div>
     <div class="form-group">
-        <label for="price">price</label>
-        <input type="number" class="form-control" id="price" name="price" required>
+        <label for="price">Cena:</label>
+        <input type="number" step="0.01" class="form-control" id="price" name="price" required>
     </div>
     <div class="form-group">
-        <label for="description">description</label>
+        <label for="description">Opis: </label>
         <input type="text" class="form-control" id="description" name="description" required>
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <div class="form-group">
+        <label for="image">Dodaj zdjęcie:</label>
+        <input type="file" class="form-control" id="image" name="image" accept="image/jpeg, image/png" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Dodaj ogłoszenie</button>
 </form>
 </body>
 </html>

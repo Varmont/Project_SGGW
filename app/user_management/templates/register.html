@@ -1,12 +1,13 @@
+
 <h2>Register</h2>
-<form method="POST" action="{{ url_for('user_management.register') }}">
+<form action="{{ url_for('user_management.register') }}" method="POST">
     <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+        <input class="form-control" id="username" name="username" required type="text">
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
+        <input class="form-control" id="password" name="password" required type="password">
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button class="btn btn-primary" type="submit">Register</button>
 </form>

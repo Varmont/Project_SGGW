@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="{{ url_for('static', filename='stylesheets/topnavbar.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="topnav" id="myDIV">
+
+
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    {% if current_user.is_authenticated %}
+    <a href="/favourites?user={{ current_user.id }}">Ulubione</a>
+    {% endif %}
+    <div class="search-container">
+        <form action="{{ url_for('main.search') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <input name="searched" placeholder="Search.." type="text">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    {% if not current_user.is_authenticated %}
+    <a class='logging' href="/register">Register</a>
+    <a class='logging' href="/login">Login</a>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <a class='logging' href="/logout">Wyloguj się</a>
+    {% endif %}
+
+
+
+</div>
+
+
+</body>
+</html>
+
