@@ -3,22 +3,30 @@
 <!-- header -->
 {% block header %}
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
-<h6>main page</h6>
 {% endblock %}
 
 {% block content %}
 <br/>
-{% for trip in trips %}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
+<div class="news">
+    {% for trip in trips %}
 
-            &bull; {{ trip.name }}, {{ trip.city }}
-        </h5>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+    <div class="article small">
+        <div class="articlecontent">
+            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <h2>{{ trip.name }} - {{ trip.city }}</h2>
+            <h3>{{ trip.price }} zł</h3>
+            <p>{{ trip.description }}</p>
+            <a href="{{url_for('trips.tripview', tripID = trip.id)}}">TELEPORTACJA</a>
+        </div>
     </div>
+
+    {% endfor %}
 </div>
-{% endfor %}
+    <a id = "display6">6</a>
+    <a id = "display12">12</a>
+    <a id = "displayAll">wszystkie</a>
+
+
 {% endblock %}
 <!--    <div class="news">-->
 <!--        <div class="article big">-->
