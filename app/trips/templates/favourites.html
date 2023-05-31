@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>Obserwowane wycieczki</h1>
+{% endblock %}
+
+{% block content %}
+<br/>
+<div class="news">
+    {% for trip in trips %}
+
+    <div class="article small">
+        <div class="articlecontent">
+            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <h2>{{ trip.name }} - {{ trip.city }}</h2>
+            <h3>{{ trip.price }}</h3>
+            <p>{{ trip.description }}</p>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}
