@@ -1,45 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h2>Add Trip</h2>
-<form method="POST" action="{{ url_for('trips.tripadd') }}">
-    <div class="form-group">
-        <label for="name">Nazwa wycieczki: </label>
-        <input type="text" class="form-control" id="name" name="name" required>
+<html>
+  <head>
+    <title>Simple registration form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="{{ url_for('static', filename='stylesheets/trip_add.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>Rejestracja wycieczki</h1>
+      <form method="POST" action="{{ url_for('trips.tripadd') }}">
+        <hr>
+
+        <hr>
+
+        <label for="name"></label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nazwa wycieczki" autofocus required>
+
+          <br><br/>
+          <label for="date_start" padding="" >Data rozpoczęcia: </label>
+          <input type="date" class="form-control" id="date_start" name="date_start" required>
+
+          <br><br/>
+          <label for="date_end">Data zakończenia: </label>
+          <input type="date" class="form-control" id="date_end" name="date_end" placeholder="Data konca" required>
+
+          <label for="country"></label>
+          <input type="text" class="form-control" id="country" name="country" placeholder="Państwo" required>
+
+          <label for="city"></label>
+          <input type="text" class="form-control" id="city" name="city" placeholder="Miasto" required>
+
+          <label for="price"></label>
+          <input type="number" class="form-control" id="price" name="price" placeholder="Cena" required>
+
+          <div height = 72px;>
+          <label for="description"></label>
+            <textarea class="form-control" id="description" name="description" placeholder="Opis" required></textarea>
+          </div>
+
+          <label for="image">Dodaj zdjęcie:</label>
+          <input type="file" class="form-control" id="image" name="image" accept="image/jpeg, image/png" required>
+            <hr>
+            <hr>
+
+            <div class="btn-block">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-        <label for="date_start">Data rozpoczęcia wycieczki: </label>
-        <input type="date" class="form-control" id="date_start" name="date_start" required>
-    </div>
-    <div class="form-group">
-        <label for="date_end">Data zakończenia wycieczki: </label>
-        <input type="date" class="form-control" id="date_end" name="date_end" required>
-    </div>
-    <div class="form-group">
-        <label for="country">Państwo: </label>
-        <input type="text" class="form-control" id="country" name="country" required>
-    </div>
-    <div class="form-group">
-        <label for="city">Miasto: </label>
-        <input type="text" class="form-control" id="city" name="city" required>
-    </div>
-    <div class="form-group">
-        <label for="price">Cena:</label>
-        <input type="number" step="0.01" class="form-control" id="price" name="price" required>
-    </div>
-    <div class="form-group">
-        <label for="description">Opis: </label>
-        <input type="text" class="form-control" id="description" name="description" required>
-    </div>
-    <div class="form-group">
-        <label for="image">Dodaj zdjęcie:</label>
-        <input type="file" class="form-control" id="image" name="image" accept="image/jpeg, image/png" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Dodaj ogłoszenie</button>
-</form>
-</body>
+  </body>
 </html>

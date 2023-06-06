@@ -8,7 +8,7 @@ user_trip = db.Table("user_trip",
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(50), nullable=False)
     followed = db.relationship('Trip', secondary=user_trip, backref='follower', lazy='dynamic')
 
