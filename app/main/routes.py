@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from ..trips.trip import Trip
 from ..extensions import db
-from .forms import SearchForm, CityForm
+from .forms import SearchForm, TripForm
 import numpy as np
 
 main = Blueprint('main', __name__, template_folder='templates')
@@ -40,7 +40,7 @@ def index():
     # ----------------------FILTER CITIES --------------------------------------------
 
     # querying database by cities, assigning CityForm and
-    form = CityForm()
+    form = TripForm()
     cities = []
     # query of cities
     tripsv2 = db.session.query(Trip.city).distinct().all()
@@ -48,12 +48,23 @@ def index():
     for item in tripsv2:
         cities.append(item.__getitem__(0))  # got the array of all cities in the database
     form.city.choices = cities
-    if request.method == 'POST':
-        filtereddata = form.city.data
-        tripsfiltered = tripsfiltered.filter(Trip.city == filtereddata)
+
+    # priceform = PriceForm()
+    # to query database
+
+    if request.method == 'POST' and form.validate_on_submit():
+        filtereddatacity = form.city.data
+        filtereddataprice = form.price.data
+        print(filtereddataprice)
+        tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity and Trip.price <= form.price.data)
         # sort by name
         tripsfiltered = tripsfiltered.order_by(Trip.name).all()
         return render_template('index.html', trips=tripsfiltered, form=form)
+
+    # elif request.method == 'POST' and priceform.validate_on_submit():
+    #     pricesearched = priceform.pricesearched.data
+    #     print("wpadło do ifaaaaaaaaaaaaaaa")
+    #     pass
 
     return render_template('index.html', trips=trips, form=form)
 
@@ -89,6 +100,7 @@ def search():
 
         trips = trips.filter(Trip.name.contains(searcheddata) |
                              Trip.city.contains(searcheddata) |
+                             Trip.country.contains(searcheddata) |
                              Trip.description.contains(searcheddata)
                              )
         # sort by name
@@ -99,5 +111,3 @@ def search():
             return render_template("search.html", form=searchform, searched=searcheddata, trips=trips)
 
     return render_template('index.html', trips=trips)  # dorobić nie znaleziono takiej wycieczki html
-
-

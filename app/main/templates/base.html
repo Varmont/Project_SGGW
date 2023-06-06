@@ -29,25 +29,36 @@
             </form>
 
         </div>
-        <div class="pins">
-            <form action="{{url_for('main.index')}}" method="POST">
-                {{ form.hidden_tag() }}
+
+        <form action="{{url_for('main.index')}}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="pins">
                 <label for="email">Choose city: </label>
-                <div class="form-group">
+                <div class="form-group"><!-- pole wyboru-->
                     {{ form.city }}
+
                 </div>
-                <input type="submit" value="Filter">
+            </div>
+            <div class="pins">
+                <label for="email">Choose maximal price: </label>
+                <div class="form-group">
+                    {{form.price}}
+                    <!-- <input type="range" min="0" max="10000" name="priceslider" />-->
+                </div>
 
-            </form>
-        </div>
-        <div class="pins">
 
-        </div>
-        <div class="pins">
-        </div>
-        <div class="pins">
-        </div>
+            </div>
+
+
+            <div class="pins">
+
+                <input type="submit" value="Filter all">
+                </div>
+
+        </form>
     </div>
+
+</div>
 
 </div>
 
