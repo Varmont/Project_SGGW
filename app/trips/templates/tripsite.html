@@ -7,21 +7,33 @@
 </head>
 <body>
     <div id="container">
-        <h2>Witaj na wycieczce do {{city}}!</h2>
+        <h2>Witaj na wycieczce do {{ trip.city }}!</h2>
         <div id="topbar">
             <div id="photo">
-                tu bedzie zdj
+                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}" width="200" height="280">
             </div>
             <div id="opis">
-                {{description}}
+                {{ trip.description }}
             </div>
         </div>
         <div style="clear:both;"></div>
         <div id="info">
-            Data rozpoczęcia wycieczki: {{date_start}}</br>
-            Data zakończenia wycieczki: {{date_end}}</br>
-            Całkowity koszt wycieczki: {{price}} zł
+            Data rozpoczęcia wycieczki: {{ trip.date_start }}</br>
+            Data zakończenia wycieczki: {{ trip.date_end }}</br>
+            Całkowity koszt wycieczki: {{ trip.price }} zł
         </div>
+        <h3>Zachęcamy do kupna naszej wycieczki! Gwarantujemy świetną zabawę! :)</h3>
+        {% if current_user.is_authenticated %}
+            {% if not current_user.is_following(trip.id) %}
+                <form action="{{ url_for('trips.follow', tripID = trip.id) }}" method="POST">
+                    <button class="btn btn-primary" type="submit">Dodaj do ulubionych</button>
+                </form>
+            {% else %}
+                <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
+                    <button class="btn btn-primary" type="submit">Usuń z ulubionych</button>
+                </form>
+            {% endif %}
+        {% endif %}
     </div>
 </body>
 </html>
