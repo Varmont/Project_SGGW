@@ -14,90 +14,58 @@
         {% block content %}
 
         <!-- block content to repeat, zawartość centrum-->
+
         {% endblock %}
         <!-- sidebar added -->
+
     </div>
     <div class="sidebar">
-        <!-- zawartość boku, sidebara -->
+        {% block sidebar %}
+        <!-- sidebar to add-->
+        {% endblock %}
+    </div>
+
+    <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
 
 
-        <div class="pins">
-            <h2>Filtering trips </h2>
+    <!--footer to repeat everytime -->
 
-            <form action="/">
-                <input type="submit" value="Clear all filters"/>
-            </form>
 
+    <div class="footer">
+        {% if current_user.is_authenticated %}
+        Zalogowany jako
+        {{ current_user.username }}
+        {% endif %}
+        <div class="bottomlinks">
+            <h4>Politics</h4>
+            <ul>
+                <li><a href="#">Congress</a></li>
+                <li><a href="#">Security</a></li>
+                <li><a href="#">The nine</a></li>
+                <li><a href="#">Trumpmerica</a></li>
+                <li><a href="#">State</a></li>
+            </ul>
         </div>
-
-        <form action="{{url_for('main.index')}}" method="POST">
-            {{ form.hidden_tag() }}
-            <div class="pins">
-                <div class="container">
-                    <div class="column">
-                        <div class="row">
-                            <label>Choose city: <br>{{ form.city }}</label>
-                        </div>
-                        <div class="row">
-                            <label>Choose country: <br>{{ form.country }}</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    <div class="pins">
-        {% include 'slider.html' %}
-    </div>
-
-    <div class="pins">
-        <input type="submit" value="Filter all">
-    </div>
-
-    </form>
-</div>
-
-</div>
-
-
-<!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
-
-
-<!--footer to repeat everytime -->
-
-
-<div class="footer">
-    {% if current_user.is_authenticated %}
-    Zalogowany jako
-    {{ current_user.username }}
-    {% endif %}
-    <div class="bottomlinks">
-        <h4>Politics</h4>
-        <ul>
-            <li><a href="#">Congress</a></li>
-            <li><a href="#">Security</a></li>
-            <li><a href="#">The nine</a></li>
-            <li><a href="#">Trumpmerica</a></li>
-            <li><a href="#">State</a></li>
-        </ul>
-    </div>
-    <div class="bottomlinks">
-        <h4>Entertainment</h4>
-        <ul>
-            <li><a href="#">Star</a></li>
-            <li><a href="#">Media</a></li>
-            <li><a href="#">Fashion</a></li>
-            <li><a href="#">Screen</a></li>
-            <li><a href="#">Culture</a></li>
-        </ul>
-    </div>
-    <div class="bottomlinks">
-        <h4>Technology</h4>
-        <ul>
-            <li><a href="#">Startup</a></li>
-            <li><a href="#">Culture</a></li>
-            <li><a href="#">Future</a></li>
-            <li><a href="#">Gadget</a></li>
-            <li><a href="#">Bussiness</a></li>
-        </ul>
+        <div class="bottomlinks">
+            <h4>Entertainment</h4>
+            <ul>
+                <li><a href="#">Star</a></li>
+                <li><a href="#">Media</a></li>
+                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Screen</a></li>
+                <li><a href="#">Culture</a></li>
+            </ul>
+        </div>
+        <div class="bottomlinks">
+            <h4>Technology</h4>
+            <ul>
+                <li><a href="#">Startup</a></li>
+                <li><a href="#">Culture</a></li>
+                <li><a href="#">Future</a></li>
+                <li><a href="#">Gadget</a></li>
+                <li><a href="#">Bussiness</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 

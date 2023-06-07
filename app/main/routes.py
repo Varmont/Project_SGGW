@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request
 from ..trips.trip import Trip
 from ..extensions import db
 from .forms import SearchForm, TripForm
-import numpy as np
 
 main = Blueprint('main', __name__, template_folder='templates')
 

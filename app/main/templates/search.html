@@ -1,20 +1,36 @@
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
 
 {% block header %}
-    <h2> You searched for ..</h2>
+<h1> Wyszukano następujące wycieczki: </h1>
 {% endblock %}
 
 {% block content %}
-<br/>
-{% for trip in trips %}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
+<!--<br/>-->
+<!--{% for trip in trips %}-->
+<!--<div class="card" style="width: 18rem;">-->
+<!--    <div class="card-body">-->
+<!--        <h5 class="card-title">-->
 
-            &bull; {{ trip.name }}, {{ trip.city }}
-        </h5>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+<!--            &bull; {{ trip.name }}, {{ trip.city }}-->
+<!--        </h5>-->
+<!--        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="news">
+    {% for trip in trips %}
+
+    <div class="article small">
+        <div class="articlecontent">
+            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <h2>{{ trip.name }} - {{ trip.city }}</h2>
+            <h3>{{ trip.price }}</h3>
+            <p>{{ trip.description }}</p>
+            <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+        </div>
     </div>
+
+    {% endfor %}
 </div>
-{% endfor %}
+
+<!--{% endfor %}-->
 {% endblock %}
