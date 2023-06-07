@@ -5,32 +5,6 @@ from .forms import SearchForm, TripForm
 
 main = Blueprint('main', __name__, template_folder='templates')
 
-
-# @main.route("/fetchrecords", methods=[ "POST", "GET"])
-# def fetchrecords():
-#     form = PriceForm()
-#     trips = Trip.query
-#     minimum_price = form.min.data
-#     print(minimum_price)
-#     if request.method == "POST":
-#
-#
-#         print(minimum_price)
-#
-#         maximum_price = form.max.data
-#         print(maximum_price)
-#         trips = trips.filter(float(maximum_price) >= Trip.price >= float(minimum_price))
-#         trips = trips.order_by(Trip.name).all()
-#         # if found, show search html with found trips
-#         if len(trips) > 0:
-#             return render_template("search.html", form=form,
-#                                    minimum_price=minimum_price,
-#                                    maximum_price=maximum_price,
-#                                    trips=trips)
-#
-#     return render_template('index.html', trips=trips)  # dorobić nie znaleziono takiej wycieczki html
-
-
 @main.route("/", methods=['GET', 'POST'])
 def index():
     # executing database
@@ -99,10 +73,10 @@ def search():
         searcheddata = searchform.searched.data
         # query the database
 
-        trips = trips.filter(Trip.name.contains(searcheddata) |
-                             Trip.city.contains(searcheddata) |
-                             Trip.country.contains(searcheddata) |
-                             Trip.description.contains(searcheddata)
+        trips = trips.filter((Trip.name.contains(searcheddata)) |
+                             (Trip.city.contains(searcheddata)) |
+                             (Trip.country.contains(searcheddata)) |
+                             (Trip.description.contains(searcheddata))
                              )
         # sort by name
         trips = trips.order_by(Trip.name).all()
