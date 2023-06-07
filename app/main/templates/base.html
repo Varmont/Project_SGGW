@@ -33,34 +33,30 @@
         <form action="{{url_for('main.index')}}" method="POST">
             {{ form.hidden_tag() }}
             <div class="pins">
-                <label for="email">Choose city: </label>
-                <div class="form-group"><!-- pole wyboru-->
-                    {{ form.city }}
-
+                <div class="container">
+                    <div class="column">
+                        <div class="row">
+                            <label>Choose city: <br>{{ form.city }}</label>
+                        </div>
+                        <div class="row">
+                            <label>Choose country: <br>{{ form.country }}</label>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="pins">
-                <label for="email">Choose maximal price: </label>
-                <div class="form-group">
-                    {{form.price}}
-                    <!-- <input type="range" min="0" max="10000" name="priceslider" />-->
-                </div>
-
-
-            </div>
-
-
-            <div class="pins">
-
-                <input type="submit" value="Filter all">
-                </div>
-
-        </form>
+    <div class="pins">
+        {% include 'slider.html' %}
     </div>
 
+    <div class="pins">
+        <input type="submit" value="Filter all">
+    </div>
+
+    </form>
 </div>
 
 </div>
+
 
 <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
 

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, DecimalRangeField
+from wtforms import StringField, SubmitField, SelectField, DecimalRangeField, HiddenField
 from wtforms.validators import DataRequired
 
 
@@ -10,12 +10,8 @@ class SearchForm(FlaskForm):
 
 class TripForm(FlaskForm):
     city = SelectField('city', choices=[])
-
-    price = DecimalRangeField('price')
-
+    country = SelectField('city', choices=[])
+    price = HiddenField('price')
     submit = SubmitField("Submit")
 
 
-# class PriceForm(FlaskForm):
-#     pricesearched = FloatField('pricesearched', validators=[DataRequired()])
-#     submit = SubmitField("Submit")
