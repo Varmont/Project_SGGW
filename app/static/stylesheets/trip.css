@@ -42,3 +42,18 @@ h2{
     background-color: white;
     padding: 20px;
 }
+
+.fav{
+    width:100px;
+    float: right;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
+    border: none;
+    background-color: #EED90C;
+    color: #fff;
+}
+
+.fav:hover {
+      background: #26a9e0;
+}

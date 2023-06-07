@@ -3,9 +3,11 @@
 <html lang="en">
 <head>
     <link href="{{ url_for('static', filename='stylesheets/trip.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+{% include 'alerts.html' %}
 <body>
     <div id="container">
         <h2>Witaj na wycieczce do {{ trip.city }}!</h2>
@@ -19,21 +21,20 @@
         </div>
         <div style="clear:both;"></div>
         <div id="info">
+            {% if current_user.is_authenticated and current_user.is_following(trip.id) %}
+            <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
+              <button class="fav" type="submit"><b><i class="fa fa-heart-o" style="margin:2px"></i><br/>Usuń z ulubionych</b></button>
+            </form>
+            {% else %}
+            <form action="{{ url_for('trips.follow', tripID = trip.id) }}" method="POST">
+                <button class="fav" type="submit"><b><i class="fa fa-heart" style="margin:2px"></i><br/>Dodaj do ulubionych</b></button>
+            </form>
+            {% endif %}
             Data rozpoczęcia wycieczki: {{ trip.date_start }}</br>
             Data zakończenia wycieczki: {{ trip.date_end }}</br>
             Całkowity koszt wycieczki: {{ trip.price }} zł
         </div>
-        {% if current_user.is_authenticated %}
-            {% if not current_user.is_following(trip.id) %}
-                <form action="{{ url_for('trips.follow', tripID = trip.id) }}" method="POST">
-                    <button class="btn btn-primary" type="submit">Dodaj do ulubionych</button>
-                </form>
-            {% else %}
-                <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
-                    <button class="btn btn-primary" type="submit">Usuń z ulubionych</button>
-                </form>
-            {% endif %}
-        {% endif %}
+
     </div>
 </body>
 </html>

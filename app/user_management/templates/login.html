@@ -128,29 +128,11 @@
       .submit:hover {
       background: #26a9e0;
       }
-      .popup {
-      height: 80px;
-      width: 400px;
-      background: #fff;
-      border-radius: 6px;
-      border: 1px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      padding: 0 30px 30px;
-      visibility: hidden;
-      }
-      .close_popup{
-      float: right
-      }
-      .open-popup{
-      visibility: visible;
-      }
+
     </style>
   </head>
   <body>
+  {% include 'alerts.html' %}
     <div class="main-block">
       <h1>Login</h1>
       <form method="POST" action="{{ url_for('user_management.login') }}">
@@ -168,28 +150,7 @@
         <hr>
         <div class="btn-block">
           <button class="submit" type="submit" href="/">Submit</button>
-          {% if alert %}
-          <div class="popup" id="popup">
-            <button type="button" class="close_popup" onclick="closePopup()" formnovalidate>X</button>
-            <br>
-            {{ alert }}
-          </div>
-          {% endif %}
         </div>
-        <script>
-          let popup = document.getElementById("popup");
-          function openPopup(){
-            popup.classList.add("open-popup");
-          }
-          function closePopup(){
-            popup.classList.remove("open-popup");
-          }
-        </script>
-        {% if alert %}
-        <script>
-          window.onload = openPopup()
-        </script>
-        {% endif %}
       </form>
     </div>
   </body>
