@@ -1,21 +1,21 @@
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
 
 {% block header %}
-<h1> Wyszukano następujące wycieczki: </h1>
+
+    <h2> Oto nasze propozycje do twoich wyszukiwań..</h2>
+
 {% endblock %}
 
 {% block content %}
 <div class="news">
     {% for trip in trips %}
 
-    <div class="article small">
-        <div class="articlecontent">
-            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
-            <h2>{{ trip.name }} - {{ trip.city }}</h2>
-            <h3>{{ trip.price }}</h3>
-            <p>{{ trip.description }}</p>
-            <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
-        </div>
+
+            &bull; {{ trip.name }}, {{ trip.city }} <br>
+            {{trip.description}}
+        </h5>
+        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">Zobacz więcej</a>
+
     </div>
 
     {% endfor %}

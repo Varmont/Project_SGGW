@@ -11,13 +11,15 @@
 <!-- artykuły -->
 {% for trip in trips %}
 
-<div class="article small">
-    <div class="articlecontent">
-        <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
-        <h2>{{ trip.name }} - {{ trip.city }}</h2>
-        <h3>{{ trip.price }} zł</h3>
-        <p>{{ trip.description }}</p>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">TELEPORTACJA</a>
+
+    <div class="article-small">
+        <div class="articlecontent">
+            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <h2>{{ trip.name }} - {{ trip.city }}</h2>
+            <h3>{{ trip.price }} zł</h3>
+            <p>{{ trip.description }}</p>
+            <a href="{{url_for('trips.tripview', tripID = trip.id)}}" class="black-link">TELEPORTACJA</a>
+        </div>
     </div>
 </div>
 
@@ -25,6 +27,7 @@
 <a id="display6">6</a>
 <a id="display12">12</a>
 <a id="displayAll">wszystkie</a>
+
 
 {% endblock %} <!-- block of news, main structure of trips-->
 
@@ -64,3 +67,4 @@
 
 </form>
 {% endblock %}
+
