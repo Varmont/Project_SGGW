@@ -10,7 +10,7 @@
       justify-content: center;
       height: 100%;
       }
-      body, div, h1, form, input, p { 
+      body, div, h1, form, input, p {
       padding: 0;
       margin: 0;
       outline: none;
@@ -32,14 +32,14 @@
       opacity: 0.3;
       }
       .main-block {
-      max-width: 340px; 
-      min-height: 330px; 
+      max-width: 340px;
+      min-height: 330px;
       padding: 10px 0;
       margin: auto;
-      border-radius: 5px; 
+      border-radius: 5px;
       border: solid 1px #fff;
-      box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-      background: #F8FFBF; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+      background: #F8FFBF;
       }
       form {
       margin: 0 30px;
@@ -93,19 +93,19 @@
       width: calc(100% - 57px);
       height: 36px;
       margin: 13px 0 0 -5px;
-      padding-left: 10px; 
+      padding-left: 10px;
       border-radius: 0 5px 5px 0;
-      border: solid 1px #cbc9c9; 
-      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
-      background: #fff; 
+      border: solid 1px #cbc9c9;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09);
+      background: #fff;
       }
-      input[type=password] {
+      input[type=conf-password] {
       margin-bottom: 15px;
       }
       #icon {
       display: inline-block;
       padding: 9.3px 15px;
-      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09);
       background: #EED90C;
       color: #fff;
       text-align: center;
@@ -114,44 +114,55 @@
       margin-top: 10px;
       text-align: center;
       }
-      button {
+      .submit {
       width: 100%;
       padding: 10px 0;
       margin: 10px auto;
-      border-radius: 5px; 
+      border-radius: 5px;
       border: none;
-      background: #EED90C; 
+      background: #EED90C;
       font-size: 14px;
       font-weight: 600;
       color: #fff;
       }
-      button:hover {
+      .submit:hover {
       background: #26a9e0;
       }
+
     </style>
   </head>
   <body>
+  {% include 'alerts.html' %}
     <div class="main-block">
       <h1>Registration</h1>
       <form method="POST" action="{{ url_for('user_management.register') }}">
         <hr>
 
         <hr>
-        <label id="icon" for="username"><i class="fas fa-envelope"></i></label>
-        <input type="text" class="form-control" name="username" id="username" placeholder="Email" required/>
-       
+        <label id="icon" for="email"><i class="fas fa-envelope"></i></label>
+        {% if last_email %}
+        <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ last_email }}"
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autofocus required/>
+        {% else %}
+        <input type="text" class="form-control" name="email" id="email" placeholder="Email"
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" autofocus required/>
+        {% endif %}
+
         <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
+
+        <label id="icon" for="conf_password"><i class="fas fa-unlock-alt"></i></label>
+        <input type="password" class="form-control" name="conf_password" id="conf_password" placeholder="Confirm password" required/>
         <hr>
 
         <hr>
         <div class="btn-block">
           <p>By clicking Register, you agree on our <a href="https://www.w3docs.com/privacy-policy">Privacy Policy for W3Docs (bajo jajo)</a>.</p>
-          <button type="submit" href="/">Submit</button>
+          <button class="submit" type="submit" href="/">Submit</button>
         </div>
       </form>
     </div>
+
   </body>
 </html>
-
 

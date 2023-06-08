@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<link href="{{ url_for('static', filename='stylesheets/alerts.css') }}" rel="stylesheet">
+
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+  {% if errors %}
+    {%- for err in errors %}
+      <div class="popup red_popup" id="popup">
+          {{ err }}
+          <button type="button" class="popup close_red_popup" onclick="closePopup()" formnovalidate><center><b>X</b></center></button>
+      </div>
+    {% endfor -%}
+  {% endif %}
+{% endwith %}
+
+{% with messages = get_flashed_messages(category_filter=["mess"]) %}
+  {% if messages %}
+    {%- for msg in messages %}
+      <div class="popup green_popup" id="popup">
+          {{ msg }}
+          <button type="button" class="popup close_green_popup" onclick="closePopup()" formnovalidate><center><b>X</b></center></button>
+      </div>
+    {% endfor -%}
+  {% endif %}
+{% endwith %}
+
+<script>
+    let popup = document.getElementById("popup");
+    function openPopup(){
+        popup.classList.add("open-popup");
+    }
+    function closePopup(){
+        popup.classList.remove("open-popup");
+    }
+</script>
+
+<script>
+   window.onload = openPopup()
+</script>
+
+

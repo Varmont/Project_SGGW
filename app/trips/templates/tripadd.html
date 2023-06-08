@@ -10,7 +10,7 @@
       justify-content: center;
       height: 100%;
       }
-      body, div, h1, form, input, p {
+      body, div, h1, form, input, p, textarea {
       padding: 0;
       margin: 0;
       outline: none;
@@ -90,7 +90,7 @@
       input[type=radio]:checked + label:after {
       opacity: 1;
       }
-      input[type=text], input[type=password], input[type=number], input[type=date] input[name=text]{
+      input[type=text], input[type=password], input[type=number], input[type=date] input[name=text], textarea{
       width: calc(100% - 57px);
       height: 36px;
       margin: 13px 0 0 -5px;
@@ -101,6 +101,7 @@
       background: #fff;
       }
       #description{
+      padding-top: 5px;
       height: 72px;
       word-wrap: break-word;
       }
@@ -144,32 +145,32 @@
         <hr>
 
         <label for="name"></label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Nazwa wycieczki" required>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nazwa wycieczki" autofocus required>
 
           <br><br/>
           <label for="date_start" padding="" >Data rozpoczęcia: </label>
           <input type="date" class="form-control" id="date_start" name="date_start" required>
 
           <br><br/>
-          <label for="date_end">Date zakończenia: </label>
+          <label for="date_end">Data zakończenia: </label>
           <input type="date" class="form-control" id="date_end" name="date_end" placeholder="Data konca" required>
 
-          <label for="country">Państwo: </label>
-        <input type="text" class="form-control" id="country" name="country" required>
+          <label for="country"></label>
+          <input type="text" class="form-control" id="country" name="country" placeholder="Państwo" required>
 
           <label for="city"></label>
           <input type="text" class="form-control" id="city" name="city" placeholder="Miasto" required>
 
           <label for="price"></label>
-          <input type="number" class="form-control" id="price" name="price" placeholder="Cena" required>
+          <input type="number" class="form-control" id="price" name="price" min=0 step= "0.01" placeholder="Cena" required>
 
           <div height = 72px;>
           <label for="description"></label>
-            <input type="text" class="form-control" id="description" name="description" placeholder="Opis" required>
+            <textarea class="form-control" id="description" name="description" placeholder="Opis" required></textarea>
           </div>
 
           <label for="image">Dodaj zdjęcie:</label>
-        <input type="file" class="form-control" id="image" name="image" accept="image/jpeg, image/png" required>
+          <input type="file" class="form-control" id="image" name="image" accept="image/jpeg, image/png" required>
             <hr>
             <hr>
 

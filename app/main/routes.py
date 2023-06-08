@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from ..trips.trip import Trip
 from ..extensions import db
 from .forms import SearchForm, TripForm

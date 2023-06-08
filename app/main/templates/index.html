@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
 
 <!-- zawartość main -->
@@ -7,12 +5,20 @@
 {% block header %}
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
 {% endblock %}
+
 {% block content %}
-<!-- artykuły -->
-{% for trip in trips %}
-
-
-    <div class="article-small">
+<br/>
+{% if request.args.get('max_loop') is none %}
+{% set max_loop = 6 %}
+{% else %}
+{% set max_loop = request.args.get('max_loop') | int %}
+{% endif %}
+<div class="news">
+    {% set ns = namespace(trips_len=0) %}
+    {% for trip in trips %}
+    {% set ns.trips_len = ns.trips_len + 1 %}
+    {% if loop.index0 < max_loop %}
+    <div class="article small">
         <div class="articlecontent">
             <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
             <h2>{{ trip.name }} - {{ trip.city }}</h2>
@@ -21,12 +27,13 @@
             <a href="{{url_for('trips.tripview', tripID = trip.id)}}" class="black-link">TELEPORTACJA</a>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
+    <a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
+    <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
+    <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
 </div>
 
-{% endfor %}
-<a id="display6">6</a>
-<a id="display12">12</a>
-<a id="displayAll">wszystkie</a>
 
 
 {% endblock %} <!-- block of news, main structure of trips-->

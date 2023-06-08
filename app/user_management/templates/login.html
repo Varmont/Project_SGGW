@@ -114,7 +114,7 @@
       margin-top: 10px;
       text-align: center;
       }
-      button {
+      .submit {
       width: 100%;
       padding: 10px 0;
       margin: 10px auto;
@@ -125,31 +125,33 @@
       font-weight: 600;
       color: #fff;
       }
-      button:hover {
+      .submit:hover {
       background: #26a9e0;
       }
+
     </style>
   </head>
   <body>
+  {% include 'alerts.html' %}
     <div class="main-block">
       <h1>Login</h1>
       <form method="POST" action="{{ url_for('user_management.login') }}">
         <hr>
 
         <hr>
-        <label id="icon" for="username"><i class="fas fa-envelope"></i></label>
-        <input type="text" class="form-control" name="username" id="username" placeholder="Email" required/>
 
+
+        <label id="icon" for="email"><i class="fas fa-envelope"></i></label>
+        <input type="text" class="form-control" name="email" id="email" placeholder="Email" autofocus required/>
         <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
         <hr>
 
         <hr>
         <div class="btn-block">
-          <button type="submit" href="/">Submit</button>
+          <button class="submit" type="submit" href="/">Submit</button>
         </div>
       </form>
     </div>
   </body>
 </html>
-
