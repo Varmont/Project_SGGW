@@ -4,7 +4,7 @@ from ..extensions import db
 from datetime import datetime
 from flask import Blueprint, render_template, request, flash, url_for, redirect
 from flask_login import current_user
-from ..main.forms import CityForm
+from random import randint
 
 trips = Blueprint('trips', __name__, template_folder = 'templates')
 
@@ -19,8 +19,9 @@ def tripadd():
         price = request.form['price']
         description = request.form['description']
         image = request.form['image']
+        stars = randint(3, 9)
         trip = Trip(name=name, country=country, date_start=date_start, date_end=date_end, city=city,
-                    price=price, description=description, image=image)
+                    price=price, description=description, image=image, stars=stars)
         db.session.add(trip)
         db.session.commit()
         return render_template('tripsite.html', trip=trip)
@@ -60,8 +61,8 @@ def unfollow(tripID):
 @trips.route('/favourites', methods=['GET'])
 def favourite():
     userID = request.args.get('user')
-    form = CityForm()
+
     trips = db.session.execute(db.select(Trip).join(user_trip).where(user_trip.c.user_id == userID)).scalars()
 
-    return render_template('favourites.html', trips=trips, form=form)
+    return render_template('favourites.html', trips=trips)
 

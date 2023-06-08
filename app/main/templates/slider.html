@@ -47,7 +47,8 @@
 
 <p>Wybierz maksymalny pułap cenowy wycieczki: </p>
 <div class="slidecontainer">
-    <input class="slider" id="myRange" max="2000" min="0" name="slider" step=".01" type="range" value="1000.0">
+    <input class="slider" id="myRange" max="{{ max_price }}" min="{{ min_price }}" name="slider"
+           step=".01" type="range" value="{{ (max_price+min_price)/2 }}">
     <p>Maksymalna cena: <span id="demo"></span> zł </p>
 
 </div>

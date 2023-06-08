@@ -11,3 +11,4 @@ class Trip(db.Model):
     price = db.Column(db.Float, nullable=False)
     description = db.Column(db.Text, nullable=False)
     image = db.Column(db.String(100), nullable=False)
+    stars = db.Column(db.Integer, nullable=False)

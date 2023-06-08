@@ -18,21 +18,29 @@
     {% for trip in trips %}
     {% set ns.trips_len = ns.trips_len + 1 %}
     {% if loop.index0 < max_loop %}
-    <div class="article small">
+    <div class="article-small">
         <div class="articlecontent">
             <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
-            <h2>{{ trip.name }} - {{ trip.city }}</h2>
-            <h3>{{ trip.price }} zł</h3>
-            <p>{{ trip.description }}</p>
-            <a href="{{url_for('trips.tripview', tripID = trip.id)}}" class="black-link">TELEPORTACJA</a>
+            <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+            <h2>{{ trip.name }}</h2>
+            <h3>{{ trip.country }} - {{ trip.city }}</h3>
+            {% for i in range(0, trip.stars) %}
+            {% if i % 2 == 0 %}
+            <i class="fa fa-star" id="star"></i>
+            {% elif loop.last and i % 2 != 0 %}
+            <i class="fa fa-star-half" id="star"></i>
+            {% endif %}
+            {% endfor %}
         </div>
+        <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
     </div>
+
     {% endif %}
     {% endfor %}
-    <a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
+</div>
+<a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
     <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
     <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
-</div>
 
 
 

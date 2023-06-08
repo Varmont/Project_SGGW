@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request
 from ..trips.trip import Trip
 from ..extensions import db
 from .forms import SearchForm, TripForm
+from sqlalchemy import func
+from random import sample, seed
 
 main = Blueprint('main', __name__, template_folder='templates')
 
@@ -19,6 +21,12 @@ def index():
     # query of cities
     tripsv2 = db.session.query(Trip.city).distinct().all()  # array wszystkich miast jako sqlalchemy obj
     tripsv3 = db.session.query(Trip.country).distinct().all()  # array krajów jako sqlalchemy obj
+    max_price = db.session.query(func.max(Trip.price)).first()[0]
+    if max_price is None:
+        max_price = 2000
+    min_price = db.session.query(func.min(Trip.price)).first()[0]
+    if min_price is None:
+        min_price = 0
     tripsfiltered = Trip.query  # instancja sqlalchemy
     for item in tripsv2:
         cities.append(item.__getitem__(0))  # got the array of all cities in the database
@@ -39,9 +47,10 @@ def index():
                                              Trip.price <= filtereddataprice)
         # sort by name
         tripsfiltered = tripsfiltered.order_by(Trip.name).all()
-        return render_template('index.html', trips=tripsfiltered, form=form)
+
+        return render_template('index.html', trips=tripsfiltered, form=form, min_price=min_price, max_price=max_price)
     # jeżeli nie, to zwróć basicowe
-    return render_template('index.html', trips=trips, form=form)
+    return render_template('index.html', trips=trips, form=form, min_price=min_price, max_price=max_price)
 
 
 @main.route("/about")

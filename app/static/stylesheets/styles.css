@@ -4,12 +4,24 @@ body{
 	font-size: 16px;
 	line-height: 1.5;
 	font-family: sans-serif;
-	background-color: #FDE87D;
+	background-color: #FFFBC8;
 }
 
-a{
+.footer a{
 	text-decoration: none;
 	color: white;
+}
+
+.tripurl{
+    position:absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    height:100%;
+    z-index: 1;
+    background-color:#ffffff;
+    filter: alpha(opacity=0);
+    opacity:0;
 }
 
 .black-link{
@@ -25,21 +37,41 @@ a{
 
 .news img,.sidebar img{
 	box-sizing: border-box;
+}
+
+#star {
+    color: gold;
+}
+
+h3 {
+    margin: 0;
+}
+.price{
+    float: right;
+    margin-top: 6px;
+}
+.articlecontent{
+	padding: 1rem;
+	background-color: #FFFBC8;
+	margin: 1px;
 	width: 100%;
 }
 
-.articlecontent{
-	padding: 1rem;
-	background-color: #F2F2F2;
-	margin: 1px;
-}
 
+p{
+    font-size: 13px;
+}
 .article-small{
+    position: relative;
 	margin-bottom: 1rem;
 	margin-left: 1rem;
-	background-color: #F2F2F2;
-	border: 1px dotted black;
-	overflow: hidden;
+	background-color: #FFFBC8;
+	border: none;
+    max-height: 50%;
+}
+
+.article-small:hover .articlecontent{
+    opacity: 0.7;
 }
 
 .pins{
@@ -54,7 +86,11 @@ a{
 }
 
 img{
-	max-width: 60%;
+    height: 60%;
+    width: 100%;
+}
+h2{
+    margin: 0;
 }
 
 .container{
@@ -63,6 +99,7 @@ img{
 }
 
 .header{
+    padding-top: 60px;
 	box-sizing: border-box;      /*width including margins paddings */
 	width:100%;
 	text-align: center;
@@ -101,6 +138,7 @@ img{
 
 .disp_amount:hover{
     background: #26a9e0;
+    cursor: pointer;
 }
 
 #disp_6{
@@ -113,6 +151,7 @@ img{
     width: 5%;
     right: 1.2%;
 }
+
 /*Desktops*/
 
 @media screen and (min-width: 831px){
@@ -123,6 +162,7 @@ img{
 		box-sizing: border-box;
 		flex:3;                  /* news occupies 2/3 of width n sidebar 1/3 of width */
 		margin-right: 1rem;
+		justify-content: flex-start;
 	}
 	.
 	{
@@ -131,11 +171,8 @@ img{
 	}
 	.article-small{
         display: flex;
-        max-width: 600px;
-        max-height: 800px;
         flex-basis: calc(33.3333% - 20px);
-        flex-grow: 1;
-        flex-shrink: 1;
+
         margin: 10px;
 	}
 
