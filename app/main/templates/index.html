@@ -1,14 +1,16 @@
+
+
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
+
 <!-- zawartość main -->
 <!-- header -->
 {% block header %}
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
 {% endblock %}
-
 {% block content %}
-<br/>
-<div class="news">
-    {% for trip in trips %}
+<!-- artykuły -->
+{% for trip in trips %}
+
 
     <div class="article-small">
         <div class="articlecontent">
@@ -19,13 +21,50 @@
             <a href="{{url_for('trips.tripview', tripID = trip.id)}}" class="black-link">TELEPORTACJA</a>
         </div>
     </div>
-
-    {% endfor %}
 </div>
 
-    <a id = "display6">6</a>
-    <a id = "display12">12</a>
-    <a id = "displayAll">wszystkie</a>
+{% endfor %}
+<a id="display6">6</a>
+<a id="display12">12</a>
+<a id="displayAll">wszystkie</a>
 
 
+{% endblock %} <!-- block of news, main structure of trips-->
+
+{% block sidebar %}
+<!-- zawartość boku, sidebara -->
+
+
+<div class="pins">
+    <h2>Filtering trips </h2>
+
+    <form action="/">
+        <input type="submit" value="Clear all filters"/>
+    </form>
+
+</div>
+<form action="{{url_for('main.index')}}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="pins">
+        <div class="container">
+            <div class="column">
+                <div class="row">
+                    <label>Choose city: <br>{{ form.city }}</label>
+                </div>
+                <div class="row">
+                    <label>Choose country: <br>{{ form.country }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pins">
+        {% include 'slider.html' %}
+    </div>
+
+    <div class="pins">
+        <input type="submit" value="Filter all">
+    </div>
+
+</form>
 {% endblock %}
+

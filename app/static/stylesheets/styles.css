@@ -59,6 +59,7 @@ img{
 
 .container{
 	display: flex;
+	width: 100%;
 }
 
 .header{
@@ -111,4 +112,18 @@ img{
         margin: 10px;
 	}
 
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+}
+.row {
+  display: flex;
 }
