@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <link href="{{ url_for('static', filename='stylesheets/trip.css') }}" rel="stylesheet">
@@ -13,7 +12,7 @@
         <h2>Witaj na wycieczce do {{ trip.city }}!</h2>
         <div id="topbar">
             <div id="photo">
-                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}" width="200" height="280">
             </div>
             <div id="opis">
                 {{ trip.description }}
@@ -21,6 +20,7 @@
         </div>
         <div style="clear:both;"></div>
         <div id="info">
+            <h3>Zachęcamy do kupna naszej wycieczki! Gwarantujemy świetną zabawę! :)</h3>
             {% if current_user.is_authenticated and current_user.is_following(trip.id) %}
             <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
               <button class="fav" type="submit"><b><i class="fa fa-heart-o" style="margin:2px"></i><br/>Usuń z ulubionych</b></button>
@@ -34,6 +34,8 @@
             Data zakończenia wycieczki: {{ trip.date_end }}</br>
             Całkowity koszt wycieczki: {{ trip.price }} zł
         </div>
+
+
 
     </div>
 </body>

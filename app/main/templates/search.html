@@ -1,20 +1,23 @@
 {% extends 'base.html' %} <!-- zawieram htmlkę, naszą stronę główną-->
 
 {% block header %}
-    <h2> You searched for ..</h2>
+
+    <h2> Oto nasze propozycje do twoich wyszukiwań..</h2>
+
 {% endblock %}
 
 {% block content %}
-<br/>
-{% for trip in trips %}
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">
+<div class="news">
+    {% for trip in trips %}
 
-            &bull; {{ trip.name }}, {{ trip.city }}
+
+            &bull; {{ trip.name }}, {{ trip.city }} <br>
+            {{trip.description}}
         </h5>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">See more</a>
+        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">Zobacz więcej</a>
+
     </div>
+
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
