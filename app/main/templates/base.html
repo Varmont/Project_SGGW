@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet">
+<div class="bars">
+    <div class="bar"></div>
 
-{% include 'topnavbar.html' %}
 
 
 <div class="container">
+    {% include 'topnavbar.html' %}
     <div class="header">
         {% block header %} <!-- block different for many templates-->
         {% endblock %}
     </div>
-
+    <div class="sidebar">
+        {% block sidebar %}
+        <!-- sidebar to add-->
+        {% endblock %}
+    </div>
         {% block content %}
 
         <!-- block content to repeat, zawartość centrum-->
@@ -22,18 +28,14 @@
 
 
 
-    <div class="sidebar">
-        {% block sidebar %}
-        <!-- sidebar to add-->
-        {% endblock %}
-    </div>
+
    </div>
     <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
 
 
     <!--footer to repeat everytime -->
-
-
+    <div class="bar"></div>
+</div>
     <div class="footer">
         {% if current_user.is_authenticated %}
         Zalogowany jako
@@ -70,7 +72,7 @@
             </ul>
         </div>
     </div>
-</div>
+
 
 
 </html>

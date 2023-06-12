@@ -16,8 +16,8 @@ def index():
 
     # querying database by cities, assigning CityForm and
     form = TripForm()  # dodaję instancję formularza do filtrowania
-    cities = []  # docelowo array wszystkich miast
-    countries = []  # array wszystkich unikalnych krajów
+    cities = ['-']  # docelowo array wszystkich miast
+    countries = ['-']  # array wszystkich unikalnych krajów
     # query of cities
     tripsv2 = db.session.query(Trip.city).distinct().all()  # array wszystkich miast jako sqlalchemy obj
     tripsv3 = db.session.query(Trip.country).distinct().all()  # array krajów jako sqlalchemy obj
@@ -42,9 +42,17 @@ def index():
         filtereddatacountry = form.country.data
         filtereddataprice = request.form["slider"]  # reading data from slider
 
-        tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
-                                             Trip.country == filtereddatacountry,
-                                             Trip.price <= filtereddataprice)
+        if filtereddatacountry == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
+                                                 Trip.price <= filtereddataprice)
+        elif filtereddatacity == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.country == filtereddatacountry,
+                                                 Trip.price <= filtereddataprice)
+        else:
+            tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
+                                                 Trip.country == filtereddatacountry,
+                                                 Trip.price <= filtereddataprice)
+
         # sort by name
         tripsfiltered = tripsfiltered.order_by(Trip.name).all()
 

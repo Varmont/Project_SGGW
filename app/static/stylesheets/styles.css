@@ -7,6 +7,13 @@ body{
 	background-color: #FFFBC8;
 }
 
+.bars{
+    display: flex;
+}
+
+.bar{
+    flex-basis: 13%;
+}
 .footer a{
 	text-decoration: none;
 	color: white;
@@ -38,13 +45,21 @@ body{
 .news img,.sidebar img{
 	box-sizing: border-box;
 }
-
+.sidebar{
+    position: relative;
+    margin-top: 66px;
+}
 #star {
     color: gold;
 }
 
 h3 {
     margin: 0;
+}
+
+.city_country{
+    display: flex;
+    width: 100%;
 }
 .price{
     float: right;
@@ -83,6 +98,10 @@ p{
 .header{
 	background-color: #FDE87D;
 	margin-bottom: 1rem;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 54px;
 }
 
 img{
@@ -99,7 +118,6 @@ h2{
 }
 
 .header{
-    padding-top: 60px;
 	box-sizing: border-box;      /*width including margins paddings */
 	width:100%;
 	text-align: center;
@@ -117,9 +135,11 @@ h2{
 }
 
 .news{
+    margin-top: 39px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
+	position: relative;
 }
 
 .disp_amount{
@@ -186,7 +206,7 @@ h2{
 /* Create two equal columns that floats next to each other */
 .column {
   float: left;
-  width: 50%;
+  width: 100%;
 }
 .row {
   display: flex;

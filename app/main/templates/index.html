@@ -6,6 +6,43 @@
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
 {% endblock %}
 
+{% block sidebar %}
+<!-- zawartość boku, sidebara -->
+
+<div></div>
+<div class="pins">
+    <h2>Filtering trips </h2>
+
+    <form action="/">
+        <input type="submit" value="Clear all filters"/>
+    </form>
+
+</div>
+<form action="{{url_for('main.index')}}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="pins">
+        <div class="container">
+            <div class="column">
+                <div class="row">
+                    <label>Choose city: <br>{{ form.city }}</label>
+                </div>
+                <div class="row">
+                    <label>Choose country: <br>{{ form.country }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pins">
+        {% include 'slider.html' %}
+    </div>
+
+    <div class="pins">
+        <input type="submit" value="Filter all">
+    </div>
+
+</form>
+{% endblock %}
+
 {% block content %}
 <br/>
 {% if request.args.get('max_loop') is none %}
@@ -46,40 +83,5 @@
 
 {% endblock %} <!-- block of news, main structure of trips-->
 
-{% block sidebar %}
-<!-- zawartość boku, sidebara -->
 
-
-<div class="pins">
-    <h2>Filtering trips </h2>
-
-    <form action="/">
-        <input type="submit" value="Clear all filters"/>
-    </form>
-
-</div>
-<form action="{{url_for('main.index')}}" method="POST">
-    {{ form.hidden_tag() }}
-    <div class="pins">
-        <div class="container">
-            <div class="column">
-                <div class="row">
-                    <label>Choose city: <br>{{ form.city }}</label>
-                </div>
-                <div class="row">
-                    <label>Choose country: <br>{{ form.country }}</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="pins">
-        {% include 'slider.html' %}
-    </div>
-
-    <div class="pins">
-        <input type="submit" value="Filter all">
-    </div>
-
-</form>
-{% endblock %}
 
