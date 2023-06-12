@@ -2,12 +2,27 @@
 
 <!-- zawartość main -->
 <!-- header -->
+
+
 {% block header %}
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
 {% endblock %}
 
 {% block content %}
 <br/>
+<style>
+    .submit {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: none;
+      background: #EED90C;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      }
+</style>
 {% if request.args.get('max_loop') is none %}
 {% set max_loop = 6 %}
 {% else %}
@@ -51,10 +66,18 @@
 
 
 <div class="pins">
-    <h2>Filtering trips </h2>
+    <h2>Filtrowanie wycieczek </h2>
 
     <form action="/">
-        <input type="submit" value="Clear all filters"/>
+        <input type="submit" style=" width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: none;
+      background: #EED90C;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;" value="Usuń filtry"/>
     </form>
 
 </div>
@@ -64,10 +87,10 @@
         <div class="container">
             <div class="column">
                 <div class="row">
-                    <label>Choose city: <br>{{ form.city }}</label>
+                    <label>Wybierz miasto: <br>{{ form.city }}</label>
                 </div>
                 <div class="row">
-                    <label>Choose country: <br>{{ form.country }}</label>
+                    <label>Wybierz kraj: <br>{{ form.country }}</label>
                 </div>
             </div>
         </div>
@@ -77,7 +100,15 @@
     </div>
 
     <div class="pins">
-        <input type="submit" value="Filter all">
+        <input style=" width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: none;
+      background: #EED90C;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;" type="submit" value="Przefiltruj">
     </div>
 
 </form>
