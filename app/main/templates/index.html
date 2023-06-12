@@ -9,25 +9,27 @@
 {% block sidebar %}
 <!-- zawartość boku, sidebara -->
 
-<div></div>
-<div class="pins">
-    <h2>Filtering trips </h2>
+<div class="pins" style="border-radius: 25px 25px 0 0  ;">
 
+    <h2>Filtry</h2>
+
+    <center>
     <form action="/">
-        <input type="submit" value="Clear all filters"/>
+        <input class="filter_buttons" type="submit" value="Usuń filtry"/>
     </form>
+    </center>
 
 </div>
 <form action="{{url_for('main.index')}}" method="POST">
     {{ form.hidden_tag() }}
-    <div class="pins">
+    <div class="pins" >
         <div class="container">
             <div class="column">
                 <div class="row">
-                    <label>Choose city: <br>{{ form.city }}</label>
+                    <label>Wybierz miasto: <br>{{ form.city }}</label>
                 </div>
                 <div class="row">
-                    <label>Choose country: <br>{{ form.country }}</label>
+                    <label>Wybierz kraj: <br>{{ form.country }}</label>
                 </div>
             </div>
         </div>
@@ -35,11 +37,11 @@
     <div class="pins">
         {% include 'slider.html' %}
     </div>
-
+    <center>
     <div class="pins">
-        <input type="submit" value="Filter all">
+        <input class="filter_buttons" type="submit" value="Filtruj">
     </div>
-
+    </center>
 </form>
 {% endblock %}
 
@@ -75,9 +77,14 @@
     {% endif %}
     {% endfor %}
 </div>
-<a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
-    <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
-    <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
+<div class="disp">
+    <center>
+        <p>Liczba elementów na stronie:</p>
+        <a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
+        <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
+        <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
+    </center>
+</div>
 
 
 

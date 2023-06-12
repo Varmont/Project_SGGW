@@ -131,10 +131,10 @@
 
     </style>
   </head>
-  <body>
   {% include 'alerts.html' %}
+  <body>
     <div class="main-block">
-      <h1>Registration</h1>
+      <h1>Rejestracja</h1>
       <form method="POST" action="{{ url_for('user_management.register') }}">
         <hr>
 
@@ -149,16 +149,16 @@
         {% endif %}
 
         <label id="icon" for="password"><i class="fas fa-unlock-alt"></i></label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required/>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Hasło" required/>
 
         <label id="icon" for="conf_password"><i class="fas fa-unlock-alt"></i></label>
-        <input type="password" class="form-control" name="conf_password" id="conf_password" placeholder="Confirm password" required/>
+        <input type="password" class="form-control" name="conf_password" id="conf_password" placeholder="Powtórz hasło" required/>
         <hr>
 
         <hr>
         <div class="btn-block">
-          <p>By clicking Register, you agree on our <a href="https://www.w3docs.com/privacy-policy">Privacy Policy for W3Docs (bajo jajo)</a>.</p>
-          <button class="submit" type="submit" href="/">Submit</button>
+          <p>Poprzez kliknięcie Zatwierdz, zgadzasz się na naszą <a href="https://www.w3docs.com/privacy-policy">Politykę prywatności</a>.</p>
+          <button class="submit" type="submit" href="/">Zatwierdz</button>
         </div>
       </form>
     </div>

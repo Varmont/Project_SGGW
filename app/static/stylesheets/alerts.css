@@ -1,9 +1,10 @@
 
 
 .red_popup {
-      height: 20px;
+      z-index: 99;
       width: 95%;
       margin: 5px 0px;
+      left: 1%;
       padding: 12px 20px;
       border-radius: 10px;
       border: 1px solid rgba(128, 9, 27, 0.5);
@@ -24,9 +25,9 @@
       opacity: 0.5;
 }
 .green_popup {
-      height: 20px;
+      z-index: 99;
       width: 95%;
-      margin-top: 5px;
+      margin: 5px 0px;
       left: 1%;
       padding: 12px 20px;
       border-radius: 10px;

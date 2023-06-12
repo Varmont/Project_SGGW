@@ -47,7 +47,24 @@ body{
 }
 .sidebar{
     position: relative;
-    margin-top: 66px;
+    margin-top: 82px;
+}
+
+.filter_buttons {
+    width: 100%;
+    padding: 10px 0;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: none;
+    background: #EED90C;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.filter_buttons:hover {
+    background: #26a9e0;
+    cursor: pointer;
 }
 #star {
     color: gold;
@@ -85,27 +102,46 @@ p{
     max-height: 50%;
 }
 
+.article-small_notindex{
+    position: relative;
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	background-color: #FFFBC8;
+	border: none;
+    max-height: 80%;
+}
+
 .article-small:hover .articlecontent{
     opacity: 0.7;
 }
 
+.article-small_notindex:hover .articlecontent{
+    opacity: 0.7;
+}
+
 .pins{
-	padding: 1rem;
-	margin-bottom: 1rem;
-	background-color: #f2f2f2;
+	padding: 0.5rem 1rem;
+	margin-bottom: 0.5rem;
+	background-color: #f1f1f1;
 }
 
 .header{
 	background-color: #FDE87D;
 	margin-bottom: 1rem;
+	margin-top: 1rem;
 	position: absolute;
 	width: 100%;
 	left: 0;
-	top: 54px;
+	top: 39px;
 }
 
-img{
+.article-small img{
     height: 60%;
+    width: 100%;
+}
+
+.article-small_notindex img{
+    height: 80%;
     width: 100%;
 }
 h2{
@@ -119,7 +155,7 @@ h2{
 
 .header{
 	box-sizing: border-box;      /*width including margins paddings */
-	width:100%;
+
 	text-align: center;
 }
 
@@ -135,25 +171,31 @@ h2{
 }
 
 .news{
-    margin-top: 39px;
+    margin-top: 56px;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	position: relative;
 }
 
-.disp_amount{
-    height:20px;
-    width:20px;
+.disp{
+    background: #f1f1f1;
+    top: 80%;
+    left: 10.3%;
     position: absolute;
+    padding: 0 1.3rem 0.5rem;
+    border-radius: 0 0 25px 25px;
+}
+.disp_amount{
+    box-sizing: border-box;
+    position: relative;
     text-align: center;
     color: #fff;
     background: #EED90C;
     border-radius: 8px;
-    margin: 5px 0px;
-    padding-bottom:2px;
-    padding-left:1px;
-    padding-right:1px;
+    padding: 3px;
+    margin: 0 3px;
+    text-decoration: none;
 }
 
 .disp_amount:hover{
@@ -162,14 +204,13 @@ h2{
 }
 
 #disp_6{
-    right: 9%;
+    padding: 3px 7px;
 }
 #disp_12{
-    right: 7%;
+
 }
 #disp_all{
-    width: 5%;
-    right: 1.2%;
+    padding: 3px 4px;
 }
 
 /*Desktops*/
@@ -190,6 +231,13 @@ h2{
 		flex:1;
 	}
 	.article-small{
+        display: flex;
+        flex-basis: calc(33.3333% - 20px);
+
+        margin: 10px;
+	}
+
+	.article-small_notindex{
         display: flex;
         flex-basis: calc(33.3333% - 20px);
 
