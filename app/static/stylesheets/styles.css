@@ -48,6 +48,7 @@ body{
 .sidebar{
     position: relative;
     margin-top: 82px;
+    flex-basis:17.4%;
 }
 
 .filter_buttons {
@@ -70,9 +71,7 @@ body{
     color: gold;
 }
 
-h3 {
-    margin: 0;
-}
+
 
 .city_country{
     display: flex;
@@ -81,6 +80,7 @@ h3 {
 .price{
     float: right;
     margin-top: 6px;
+    margin-left: 10px;
 }
 .articlecontent{
 	padding: 1rem;
@@ -99,7 +99,7 @@ p{
 	margin-left: 1rem;
 	background-color: #FFFBC8;
 	border: none;
-    max-height: 50%;
+    height: 300px;
 }
 
 .article-small_notindex{
@@ -108,7 +108,7 @@ p{
 	margin-left: 1rem;
 	background-color: #FFFBC8;
 	border: none;
-    max-height: 80%;
+	height: 300px;
 }
 
 .article-small:hover .articlecontent{
@@ -120,7 +120,7 @@ p{
 }
 
 .pins{
-	padding: 0.5rem 1rem;
+    padding: 9px 16.25px;
 	margin-bottom: 0.5rem;
 	background-color: #f1f1f1;
 }
@@ -136,18 +136,23 @@ p{
 }
 
 .article-small img{
-    height: 60%;
+    height: 70%;
+    max-height: 150px;
     width: 100%;
 }
 
 .article-small_notindex img{
-    height: 80%;
+    height: 70%;
+    max-height: 150px;
     width: 100%;
 }
 h2{
     margin: 0;
 }
 
+.con_cit {
+    margin: 0;
+}
 .container{
 	display: flex;
 	width: 100%;
@@ -164,6 +169,7 @@ h2{
 	flex-direction: row;
 	justify-content: space-around;
 	box-sizing: border-box;
+	margin-top: 80px;
 	width:100%;
 	text-align: left;
 	background-color:rgba(0, 0, 0, 0.96);

@@ -42,7 +42,9 @@ def index():
         filtereddatacountry = form.country.data
         filtereddataprice = request.form["slider"]  # reading data from slider
 
-        if filtereddatacountry == '-':
+        if filtereddatacountry == '-' and filtereddatacity == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.price <= filtereddataprice)
+        elif filtereddatacountry == '-':
             tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
                                                  Trip.price <= filtereddataprice)
         elif filtereddatacity == '-':
@@ -53,8 +55,12 @@ def index():
                                                  Trip.country == filtereddatacountry,
                                                  Trip.price <= filtereddataprice)
 
+
         # sort by name
         tripsfiltered = tripsfiltered.order_by(Trip.name).all()
+        if len(tripsfiltered) == 0:
+            flash("Nie znaleziono takich wycieczek!", "error")
+            return render_template('index.html', trips=trips, form=form, min_price=min_price, max_price=max_price)
 
         return render_template('index.html', trips=tripsfiltered, form=form, min_price=min_price, max_price=max_price)
     # jeżeli nie, to zwróć basicowe

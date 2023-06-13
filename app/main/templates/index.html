@@ -8,7 +8,7 @@
 
 {% block sidebar %}
 <!-- zawartość boku, sidebara -->
-
+<div class="sidebar">
 <div class="pins" style="border-radius: 25px 25px 0 0  ;">
 
     <h2>Filtry</h2>
@@ -43,37 +43,54 @@
     </div>
     </center>
 </form>
+    </div>
 {% endblock %}
 
 {% block content %}
 <br/>
-{% if request.args.get('max_loop') is none %}
-{% set max_loop = 6 %}
-{% else %}
+{% if request.args.get('max_loop') is not none %}
 {% set max_loop = request.args.get('max_loop') | int %}
 {% endif %}
 <div class="news">
     {% set ns = namespace(trips_len=0) %}
     {% for trip in trips %}
     {% set ns.trips_len = ns.trips_len + 1 %}
-    {% if loop.index0 < max_loop %}
+    {% if max_loop %}
+        {% if loop.index0 < max_loop %}
+            <div class="article-small">
+                <div class="articlecontent">
+                    <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+                    <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+                    <h2>{{ trip.name }}</h2>
+                    <h3 class="con_cit">{{ trip.country }} - {{ trip.city }}</h3>
+                    {% for i in range(0, trip.stars) %}
+                        {% if i % 2 == 0 %}
+                            <i class="fa fa-star" id="star"></i>
+                        {% elif loop.last and i % 2 != 0 %}
+                            <i class="fa fa-star-half" id="star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
+            </div>
+        {% endif %}
+    {% else %}
     <div class="article-small">
-        <div class="articlecontent">
-            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
-            <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
-            <h2>{{ trip.name }}</h2>
-            <h3>{{ trip.country }} - {{ trip.city }}</h3>
-            {% for i in range(0, trip.stars) %}
-            {% if i % 2 == 0 %}
-            <i class="fa fa-star" id="star"></i>
-            {% elif loop.last and i % 2 != 0 %}
-            <i class="fa fa-star-half" id="star"></i>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
-    </div>
-
+                <div class="articlecontent">
+                    <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+                    <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+                    <h2>{{ trip.name }}</h2>
+                    <h3 class="con_cit">{{ trip.country }} - {{ trip.city }}</h3>
+                    {% for i in range(0, trip.stars) %}
+                        {% if i % 2 == 0 %}
+                            <i class="fa fa-star" id="star"></i>
+                        {% elif loop.last and i % 2 != 0 %}
+                            <i class="fa fa-star-half" id="star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
+            </div>
     {% endif %}
     {% endfor %}
 </div>
