@@ -6,60 +6,30 @@
 <h1>Biuro podróży "Kulturalni baloniarze"</h1>
 {% endblock %}
 
-{% block content %}
-<br/>
-{% if request.args.get('max_loop') is none %}
-{% set max_loop = 6 %}
-{% else %}
-{% set max_loop = request.args.get('max_loop') | int %}
-{% endif %}
-<div class="news">
-    {% set ns = namespace(trips_len=0) %}
-    {% for trip in trips %}
-    {% set ns.trips_len = ns.trips_len + 1 %}
-    {% if loop.index0 < max_loop %}
-    <div class="article small">
-        <div class="articlecontent">
-            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
-            <h2>{{ trip.name }} - {{ trip.city }}</h2>
-            <h3>{{ trip.price }} zł</h3>
-            <p>{{ trip.description }}</p>
-            <a href="{{url_for('trips.tripview', tripID = trip.id)}}" class="black-link">TELEPORTACJA</a>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    <a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
-    <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
-    <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
-</div>
-
-
-
-{% endblock %} <!-- block of news, main structure of trips-->
-
 {% block sidebar %}
 <!-- zawartość boku, sidebara -->
+<div class="sidebar">
+<div class="pins" style="border-radius: 25px 25px 0 0  ;">
 
+    <h2>Filtry</h2>
 
-<div class="pins">
-    <h2>Filtering trips </h2>
-
+    <center>
     <form action="/">
-        <input type="submit" value="Clear all filters"/>
+        <input class="filter_buttons" type="submit" value="Usuń filtry"/>
     </form>
+    </center>
 
 </div>
 <form action="{{url_for('main.index')}}" method="POST">
     {{ form.hidden_tag() }}
-    <div class="pins">
+    <div class="pins" >
         <div class="container">
             <div class="column">
                 <div class="row">
-                    <label>Choose city: <br>{{ form.city }}</label>
+                    <label>Wybierz miasto: <br>{{ form.city }}</label>
                 </div>
                 <div class="row">
-                    <label>Choose country: <br>{{ form.country }}</label>
+                    <label>Wybierz kraj: <br>{{ form.country }}</label>
                 </div>
             </div>
         </div>
@@ -67,11 +37,75 @@
     <div class="pins">
         {% include 'slider.html' %}
     </div>
-
+    <center>
     <div class="pins">
-        <input type="submit" value="Filter all">
+        <input class="filter_buttons" type="submit" value="Filtruj">
     </div>
-
+    </center>
 </form>
+    </div>
 {% endblock %}
+
+{% block content %}
+<br/>
+{% if request.args.get('max_loop') is not none %}
+{% set max_loop = request.args.get('max_loop') | int %}
+{% endif %}
+<div class="news">
+    {% set ns = namespace(trips_len=0) %}
+    {% for trip in trips %}
+    {% set ns.trips_len = ns.trips_len + 1 %}
+    {% if max_loop %}
+        {% if loop.index0 < max_loop %}
+            <div class="article-small">
+                <div class="articlecontent">
+                    <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+                    <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+                    <h2>{{ trip.name }}</h2>
+                    <h3 class="con_cit">{{ trip.country }} - {{ trip.city }}</h3>
+                    {% for i in range(0, trip.stars) %}
+                        {% if i % 2 == 0 %}
+                            <i class="fa fa-star" id="star"></i>
+                        {% elif loop.last and i % 2 != 0 %}
+                            <i class="fa fa-star-half" id="star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
+            </div>
+        {% endif %}
+    {% else %}
+    <div class="article-small">
+                <div class="articlecontent">
+                    <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+                    <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+                    <h2>{{ trip.name }}</h2>
+                    <h3 class="con_cit">{{ trip.country }} - {{ trip.city }}</h3>
+                    {% for i in range(0, trip.stars) %}
+                        {% if i % 2 == 0 %}
+                            <i class="fa fa-star" id="star"></i>
+                        {% elif loop.last and i % 2 != 0 %}
+                            <i class="fa fa-star-half" id="star"></i>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
+            </div>
+    {% endif %}
+    {% endfor %}
+</div>
+<div class="disp">
+    <center>
+        <p>Liczba elementów na stronie:</p>
+        <a class="disp_amount" id="disp_6" href = "{{ url_for('main.index', max_loop = 6) }}"><b>6</b></a>
+        <a class="disp_amount" id="disp_12" href = "{{ url_for('main.index', max_loop = 12) }}"><b>12</b></a>
+        <a class="disp_amount" id="disp_all" href = "{{ url_for('main.index', max_loop = ns.trips_len) }}"><b>wszystkie</b></a>
+    </center>
+</div>
+
+
+
+{% endblock %} <!-- block of news, main structure of trips-->
+
+
 

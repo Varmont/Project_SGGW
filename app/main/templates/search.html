@@ -6,18 +6,29 @@
 
 {% endblock %}
 
+{% block sidebar %}
+{% endblock %}
+
 {% block content %}
+<br/>
 <div class="news">
     {% for trip in trips %}
-
-
-            &bull; {{ trip.name }}, {{ trip.city }} <br>
-            {{trip.description}}
-        </h5>
-        <a href="{{url_for('trips.tripview', tripID = trip.id)}}">Zobacz więcej</a>
-
+    <div class="article-small_notindex">
+        <div class="articlecontent">
+            <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <h3 class="price">{{ trip.price }} <sup style="font-size:10px"><u>PLN</u></sup></h3>
+            <h2>{{ trip.name }}</h2>
+            <h3 class="con_cit">{{ trip.country }} - {{ trip.city }}</h3>
+            {% for i in range(0, trip.stars) %}
+            {% if i % 2 == 0 %}
+            <i class="fa fa-star" id="star"></i>
+            {% elif loop.last and i % 2 != 0 %}
+            <i class="fa fa-star-half" id="star"></i>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class='tripurl' href="{{url_for('trips.tripview', tripID = trip.id)}}"></a>
     </div>
-
     {% endfor %}
 </div>
 {% endblock %}

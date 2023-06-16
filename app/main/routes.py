@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, redirect, url_for, flash
 from ..trips.trip import Trip
 from ..extensions import db
 from .forms import SearchForm, TripForm
+from sqlalchemy import func
+from random import sample, seed
 
 main = Blueprint('main', __name__, template_folder='templates')
 
@@ -14,11 +16,17 @@ def index():
 
     # querying database by cities, assigning CityForm and
     form = TripForm()  # dodaję instancję formularza do filtrowania
-    cities = []  # docelowo array wszystkich miast
-    countries = []  # array wszystkich unikalnych krajów
+    cities = ['-']  # docelowo array wszystkich miast
+    countries = ['-']  # array wszystkich unikalnych krajów
     # query of cities
     tripsv2 = db.session.query(Trip.city).distinct().all()  # array wszystkich miast jako sqlalchemy obj
     tripsv3 = db.session.query(Trip.country).distinct().all()  # array krajów jako sqlalchemy obj
+    max_price = db.session.query(func.max(Trip.price)).first()[0]
+    if max_price is None:
+        max_price = 2000
+    min_price = db.session.query(func.min(Trip.price)).first()[0]
+    if min_price is None:
+        min_price = 0
     tripsfiltered = Trip.query  # instancja sqlalchemy
     for item in tripsv2:
         cities.append(item.__getitem__(0))  # got the array of all cities in the database
@@ -34,14 +42,29 @@ def index():
         filtereddatacountry = form.country.data
         filtereddataprice = request.form["slider"]  # reading data from slider
 
-        tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
-                                             Trip.country == filtereddatacountry,
-                                             Trip.price <= filtereddataprice)
+        if filtereddatacountry == '-' and filtereddatacity == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.price <= filtereddataprice)
+        elif filtereddatacountry == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
+                                                 Trip.price <= filtereddataprice)
+        elif filtereddatacity == '-':
+            tripsfiltered = tripsfiltered.filter(Trip.country == filtereddatacountry,
+                                                 Trip.price <= filtereddataprice)
+        else:
+            tripsfiltered = tripsfiltered.filter(Trip.city == filtereddatacity,
+                                                 Trip.country == filtereddatacountry,
+                                                 Trip.price <= filtereddataprice)
+
+
         # sort by name
         tripsfiltered = tripsfiltered.order_by(Trip.name).all()
-        return render_template('index.html', trips=tripsfiltered, form=form)
+        if len(tripsfiltered) == 0:
+            flash("Nie znaleziono takich wycieczek!", "error")
+            return render_template('index.html', trips=trips, form=form, min_price=min_price, max_price=max_price)
+
+        return render_template('index.html', trips=tripsfiltered, form=form, min_price=min_price, max_price=max_price)
     # jeżeli nie, to zwróć basicowe
-    return render_template('index.html', trips=trips, form=form)
+    return render_template('index.html', trips=trips, form=form, min_price=min_price, max_price=max_price)
 
 
 @main.route("/about")
@@ -68,6 +91,12 @@ def indexpass():
 def search():
     searchform = SearchForm()
     trips = Trip.query
+    max_price = db.session.query(func.max(Trip.price)).first()[0]
+    if max_price is None:
+        max_price = 2000
+    min_price = db.session.query(func.min(Trip.price)).first()[0]
+    if min_price is None:
+        min_price = 0
     if request.method == 'POST' and searchform.validate_on_submit():
         # get data from submitted form
         searcheddata = searchform.searched.data
@@ -84,5 +113,5 @@ def search():
         # if found, show search html with found trips
         if len(trips) > 0:
             return render_template("search.html", form=searchform, searched=searcheddata, trips=trips)
-
-    return render_template('index.html', trips=trips)  # dorobić nie znaleziono takiej wycieczki html
+    flash('Nie znaleziono takiej wycieczki!', 'error')
+    return redirect(url_for('main.index'))  # dorobić nie znaleziono takiej wycieczki html

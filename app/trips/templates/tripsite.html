@@ -8,20 +8,35 @@
 </head>
 {% include 'alerts.html' %}
 <body>
+<div class="bars">
+    <div class="bar"></div>
     <div id="container">
-        <h2>Witaj na wycieczce do {{ trip.city }}!</h2>
+        <center>
+        <h2>{{ trip.country }} - {{ trip.city }}</h2>
+        </center>
         <div id="topbar">
-            <div id="photo">
-                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}" width="200" height="280">
-            </div>
-            <div id="opis">
-                {{ trip.description }}
-            </div>
-        </div>
-        <div style="clear:both;"></div>
-        <div id="info">
-            <h3>Zachęcamy do kupna naszej wycieczki! Gwarantujemy świetną zabawę! :)</h3>
-            {% if current_user.is_authenticated and current_user.is_following(trip.id) %}
+                <img src="{{ url_for('static', filename='pictures/' + trip.image) }}">
+            <div id="info">
+                <h3>Informacje:</h3>
+                <div style="clear:both;"></div>
+
+                <table>
+                    <tr>
+                        <td class="info_td">Data rozpoczęcia: </td>
+                        <td class="value_td">{{ trip.date_start }}</td>
+                    </tr>
+                    <tr>
+                        <td class="info_td">Data zakończenia: </td>
+                        <td class="value_td">{{ trip.date_end }}</td>
+                    </tr>
+                    <tr>
+                        <td class="info_td">Całkowity koszt: </td>
+                        <td class="value_td">{{ trip.price }} <small>PLN</small></td>
+                    </tr>
+                </table>
+                <div style="clear:both;"></div>
+                <center>
+                {% if current_user.is_authenticated and current_user.is_following(trip.id) %}
             <form action="{{ url_for('trips.unfollow', tripID = trip.id) }}" method="POST">
               <button class="fav" type="submit"><b><i class="fa fa-heart-o" style="margin:2px"></i><br/>Usuń z ulubionych</b></button>
             </form>
@@ -30,13 +45,20 @@
                 <button class="fav" type="submit"><b><i class="fa fa-heart" style="margin:2px"></i><br/>Dodaj do ulubionych</b></button>
             </form>
             {% endif %}
-            Data rozpoczęcia wycieczki: {{ trip.date_start }}</br>
-            Data zakończenia wycieczki: {{ trip.date_end }}</br>
-            Całkowity koszt wycieczki: {{ trip.price }} zł
+                    </center>
+            </div>
         </div>
-
+        <div style="clear:both;"></div>
+        <center>
+            <div id="opis">
+                <h3>Opis: <a class="main_page" href = "{{ url_for('main.index')}}">Wróć na stronę główną</a></h3>
+                {{ trip.description }}
+            </div>
+        </center>
 
 
     </div>
+    <div class="bar"></div>
+</div>
 </body>
 </html>

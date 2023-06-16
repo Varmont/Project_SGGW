@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
 <link href="{{ url_for('static', filename='stylesheets/styles.css') }}" rel="stylesheet">
+{% include 'alerts.html' %}
+<div class="bars">
+    <div class="bar"></div>
 
-{% include 'topnavbar.html' %}
 
 
 <div class="container">
+    {% include 'topnavbar.html' %}
     <div class="header">
         {% block header %} <!-- block different for many templates-->
         {% endblock %}
     </div>
+
+        {% block sidebar %}
+        <!-- sidebar to add-->
+        {% endblock %}
+
         {% block content %}
 
         <!-- block content to repeat, zawartość centrum-->
@@ -19,57 +27,52 @@
 
 
 
-    </div>
 
-    <div class="sidebar">
-        {% block sidebar %}
-        <!-- sidebar to add-->
-        {% endblock %}
-    </div>
 
+
+   </div>
     <!-- zawieram htmlkę z searchbaru w naszą stronę główną-->
 
 
     <!--footer to repeat everytime -->
-
-
+    <div class="bar"></div>
+</div>
     <div class="footer">
         {% if current_user.is_authenticated %}
         Zalogowany jako
-        {{ current_user.username }}
+        {{ current_user.email }}
         {% endif %}
         <div class="bottomlinks">
-            <h4>Politics</h4>
+            <h4>O Baloniarzach</h4>
             <ul>
-                <li><a href="#">Congress</a></li>
-                <li><a href="#">Security</a></li>
-                <li><a href="#">The nine</a></li>
-                <li><a href="#">Trumpmerica</a></li>
-                <li><a href="#">State</a></li>
+                <li><a href="#">Kim jesteśmy</a></li>
+                <li><a href="#">Nasi piloci</a></li>
+                <li><a href="#">Nasze Hotele</a></li>
+                <li><a href="#">Szkolenia turystyczne</a></li>
+                <li><a href="#">Dla inwstorów</a></li>
             </ul>
         </div>
         <div class="bottomlinks">
-            <h4>Entertainment</h4>
+            <h4>Dla klientów</h4>
             <ul>
-                <li><a href="#">Star</a></li>
-                <li><a href="#">Media</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Screen</a></li>
-                <li><a href="#">Culture</a></li>
+                <li><a href="#">Wytyczne przed podróżą</a></li>
+                <li><a href="#">Linie lotnicze</a></li>
+                <li><a href="#">Opinie o nas</a></li>
+                <li><a href="#">Karty i bony</a></li>
+                <li><a href="#">Katalogi</a></li>
             </ul>
         </div>
         <div class="bottomlinks">
-            <h4>Technology</h4>
+            <h4>Zasady korzystania</h4>
             <ul>
-                <li><a href="#">Startup</a></li>
-                <li><a href="#">Culture</a></li>
-                <li><a href="#">Future</a></li>
-                <li><a href="#">Gadget</a></li>
-                <li><a href="#">Bussiness</a></li>
+                <li><a href="#">Warunki uczestnictwa</a></li>
+                <li><a href="#">Ubezpieczenie podrzóżnego</a></li>
+                <li><a href="#">Politayka plików cookie</a></li>
+                <li><a href="#">Regulamin serwisu</a></li>
             </ul>
         </div>
     </div>
-</div>
+
 
 
 </html>
